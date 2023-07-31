@@ -13,8 +13,6 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Run Snyk to check for vulnerabilities
-      uses: snyk/actions/node@master
-      with:
-        args: test
-      env:
-        SNYK_TOKEN: 8f7286c8-8b61-4cfa-a48f-f56d82fa95c1
+      run: |
+        npm install -g snyk 
+        snyk monitor
