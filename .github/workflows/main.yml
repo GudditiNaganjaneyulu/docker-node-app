@@ -2,8 +2,7 @@ name: Synk Testing
 
 on:
   push:
-    branches:
-      - main
+
 
 jobs:
   synk_test:
