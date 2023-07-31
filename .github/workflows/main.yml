@@ -1,0 +1,30 @@
+name: Synk Testing
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  synk_test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install Synk CLI
+      run: npm install -g snyk
+
+    - name: Run Synk Testing
+      run: snyk test --all-projects --json > snyk_results.json
+
+    - name: Send Results to Synk Account
+      run: snyk monitor --file=snyk_results.json --org=my-synk-org --project-name=my-project --api=SYNK_API_TOKEN
+      env:
+        SYNK_API_TOKEN: 8f7286c8-8b61-4cfa-a48f-f56d82fa95c1
