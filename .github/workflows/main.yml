@@ -15,4 +15,5 @@ jobs:
     - name: Run Snyk to check for vulnerabilities
       run: |
         npm install -g snyk 
+        snyk auth --api-token=8f7286c8-8b61-4cfa-a48f-f56d82fa95c1
         snyk monitor
