@@ -2,6 +2,8 @@ name: Synk Testing
 
 on:
   push:
+    branches:
+      - main
 
 jobs:
   synk_test:
@@ -11,8 +13,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - uses: actions/checkout@master
     - name: Run Snyk to check for vulnerabilities
       uses: snyk/actions/node@master
-        env:
-          SNYK_TOKEN: 8f7286c8-8b61-4cfa-a48f-f56d82fa95c1
+      with:
+        args: test
+      env:
+        SNYK_TOKEN: 8f7286c8-8b61-4cfa-a48f-f56d82fa95c1
